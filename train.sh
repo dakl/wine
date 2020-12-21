@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 python train.py
 
 echo "## Model metrics" > report.md
