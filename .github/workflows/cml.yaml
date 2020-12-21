@@ -11,5 +11,7 @@ jobs:
         run: |
           # Your ML workflow goes here
           docker build -t wine .
-          docker run wine > report.md
+          dvc pull
+
+          docker run -v data:/app/data wine > report.md
           cml-send-comment report.md
