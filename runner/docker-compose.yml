@@ -2,7 +2,8 @@ version: "3.7"
 
 services:
     runner:
-      image: tcardonne/github-runner:latest
+      build:
+        context: .
       environment:
         RUNNER_NAME: "my-runner"
         RUNNER_REPOSITORY_URL: https://github.com/dakl/wine
