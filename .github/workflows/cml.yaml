@@ -14,4 +14,4 @@ jobs:
           dvc pull
 
           docker run -v data:/app/data wine > report.md
-          cml-send-comment report.md
+          cat report.md
