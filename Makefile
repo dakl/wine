@@ -2,4 +2,4 @@ build:
 	docker build -t wine .
 
 run:
-	docker run -v data:/app/data wine
+	docker run --mount type=bind,source=${PWD}/data,target=/home/trainer/app/data wine 
