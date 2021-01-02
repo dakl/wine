@@ -16,6 +16,8 @@ jobs:
         run: docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
 
       - name: send report
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker cp wine:/app/report.md report.md 
           cml-send-comment report.md
