@@ -11,12 +11,13 @@ jobs:
           # Your ML workflow goes here
           docker build -t wine .
 
-          docker run --name wine wine 
+          docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
 
-          docker cp wine:/app/metrics/metrics.json metrics/metrics.json
           git fetch --prune
           
-          echo "\n##Metrics\n" >> report.md
+          echo "# Metrics\n" > report.md
           dvc metrics diff --show-md master >> report.md
 
           cml-send-comment report.md
+
+          docker rm wine
