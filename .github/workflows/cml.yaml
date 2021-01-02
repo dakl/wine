@@ -6,18 +6,19 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
-      - name: cml_run
+
+      - name: build
+        run: docker build -t wine .
+
+      - name: run
+        run: docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
+
+      - name: send report
         run: |
-          # Your ML workflow goes here
-          docker build -t wine .
-
-          docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
-
-          git fetch --prune
-          
+          git fetch --prune          
           echo "# Metrics\n" > report.md
           dvc metrics diff --show-md master >> report.md
-
           cml-send-comment report.md
 
-          docker rm wine
+      - name: cleanup
+        run: docker rm wine
