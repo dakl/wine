@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dvc pull
+dvc pull data/wine_quality.csv
 dvc repro
 
 echo "## Model metrics" > report.md

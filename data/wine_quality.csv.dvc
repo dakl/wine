@@ -1,4 +1,4 @@
 outs:
-- md5: 6a883fd98624e18c0b7ce251f4fab4fb
-  size: 100951
+- md5: 55fd784356daea3175d96786a00f1e30
+  size: 100950
   path: wine_quality.csv

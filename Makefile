@@ -2,10 +2,8 @@ build:
 	docker build -t wine .
 
 run:
-	docker run --rm --name wine \
-		--mount type=bind,source=${HOME}/.config/gcloud/application_default_credentials.json,target=/etc/gcp.json \
-		-e GOOGLE_APPLICATION_CREDENTIALS=/etc/gcp.json \
-		wine 
+	docker run --name wine wine 
 
 copy-report:
-	docker cp wine:/home/trainer/app/report.md ./report.md
+	docker cp wine:/app/report.md ./report.md
+	docker cp wine:/app/metrics/metrics.json ./metrics/metrics.json

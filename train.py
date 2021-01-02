@@ -38,7 +38,7 @@ train_score = regr.score(X_train, y_train)
 test_score = regr.score(X_test, y_test)
 
 # Write scores to a file
-with open("data/metrics.json", "w") as outfile:
+with open("metrics/metrics.json", "w") as outfile:
     json.dump({"r2_train": train_score, "r2_test": test_score}, outfile)
 
 ##########################################
