@@ -10,6 +10,9 @@ jobs:
       - name: build
         run: docker build -t wine .
 
+      - name: pull data
+        run: dvc pull data/wine_quality.csv
+
       - name: run
         run: docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
 
