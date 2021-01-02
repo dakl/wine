@@ -19,6 +19,3 @@ jobs:
         run: |
           docker cp wine:/app/report.md report.md 
           cml-send-comment report.md
-
-      - name: cleanup
-        run: docker rm wine
