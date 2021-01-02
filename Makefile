@@ -3,6 +3,7 @@ build:
 
 run:
 	docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics  wine
+	docker cp wine:/app/report.md report.md
 	docker rm wine
 
 
