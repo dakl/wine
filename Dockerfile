@@ -11,4 +11,4 @@ RUN pipenv install --skip-lock
 
 COPY . ./
 
-CMD ["sh", "train.sh"]
+CMD ["pipenv", "run", "python", "train.py"]
