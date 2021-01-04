@@ -6,11 +6,18 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
-      - name: cml_run
+
+      - name: build
+        run: |
+          git fetch --prune
+          docker build -t wine .
+
+      - name: run
+        run: docker run --name wine -v ${PWD}/data:/app/data -v ${PWD}/metrics:/app/metrics wine
+
+      - name: send report
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Your ML workflow goes here
-          docker build -t wine .
-          docker run wine > report.md
+          docker cp wine:/app/report.md report.md 
           cml-send-comment report.md

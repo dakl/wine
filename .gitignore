@@ -1,0 +1,6 @@
+data/*.csv
+data/*.p
+
+runner/.env
+
+report.md

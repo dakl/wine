@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-python train.py
+dvc pull data/wine_quality.csv
+dvc repro
 
 echo "## Model metrics" > report.md
-cat metrics.txt >> report.md
-
-echo "## Data viz" >> report.md
-cml-publish feature_importance.png --md >> report.md
-cml-publish residuals.png --md >> report.md
-
+cat metrics/metrics.json >> report.md
 cat report.md
+
+# git fetch --prune          
+echo "# Metrics\n" > report.md
+dvc metrics diff --show-md master >> report.md

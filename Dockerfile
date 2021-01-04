@@ -1,8 +1,14 @@
-FROM dvcorg/cml-py3:latest
+FROM python:3.8.6-slim-buster as build
+
+RUN apt-get update && apt-get install -y build-essential git
 
 WORKDIR /app
-ADD requirements.txt /app
-RUN pip install -r requirements.txt
 
-COPY . /app/
-CMD sh train.sh
+RUN pip install pipenv dvc[gs]
+
+COPY Pipfile ./
+RUN pipenv install --skip-lock
+
+COPY . ./
+
+CMD ["sh", "train.sh"]

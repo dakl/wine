@@ -1,0 +1,14 @@
+stages:
+  train:
+    cmd: pipenv run python train.py
+    deps:
+    - data/wine_quality.csv
+    - train.py
+    outs:
+    - data/model.p
+    - data/feature_importance.png
+    - data/residuals.png
+    metrics:
+    - metrics/metrics.json:
+        cache: false
+
