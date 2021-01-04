@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 
 # Set random seed
@@ -26,7 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # MODELLING
 
 # Fit a model on the train section
-regr = RandomForestRegressor(max_depth=7, random_state=seed)
+regr = GradientBoostingRegressor()
 regr.fit(X_train, y_train)
 
 pickle.dump(regr, open("data/model.p", "wb"))
